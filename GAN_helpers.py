@@ -20,7 +20,7 @@ import torch
 
 os.makedirs("images", exist_ok=True)
 
-img_shape = (opt.channels, opt.img_size, opt.img_size)
+
 
 cuda = True if torch.cuda.is_available() else False
 
@@ -91,6 +91,7 @@ class GAN():
         # Initialize generator and discriminator
         self.generator = Generator()
         self.discriminator = Discriminator()
+        self.img_shape = (self.channels, self.img_size, self.img_size)
 
         if cuda:
             self.generator.cuda()
