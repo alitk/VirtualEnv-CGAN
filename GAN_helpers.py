@@ -102,7 +102,7 @@ class GAN():
         self.optimizer_D = torch.optim.Adam(discriminator.parameters(), lr=self.lr, betas=(self.b1, self.b2))
 
 
-    def train
+
 
 # Configure data loader
 # os.makedirs("../../data/mnist", exist_ok=True)
