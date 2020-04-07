@@ -37,7 +37,17 @@ img_shape = (opt.channels, opt.img_size, opt.img_size)
 
 cuda = True if torch.cuda.is_available() else False
 
-
+arguments = {
+    n_epochs: 200, #number of epochs of training
+    batch_size: 64, #size of the batches
+    lr: 0.0002, #adam: learning rate")
+    b1: 0.5, #adam: decay of first order momentum of gradient")
+    b2: 0.999, # adam: decay of first order momentum of gradient")
+    img_size: 28, # 
+    latent_dim: 100, # "dimensionality of the latent space")
+    channels: 1,
+    sample_interval: 400, # interval betwen image samples
+}
 class Generator(nn.Module):
     def __init__(self):
         super(Generator, self).__init__()
@@ -84,17 +94,39 @@ class Discriminator(nn.Module):
         return validity
 
 
-# Loss function
-adversarial_loss = torch.nn.BCELoss()
 
-# Initialize generator and discriminator
-generator = Generator()
-discriminator = Discriminator()
 
-if cuda:
-    generator.cuda()
-    discriminator.cuda()
-    adversarial_loss.cuda()
+
+class GAN():
+    def __init__(self, n_epochs = 200, batch_size= 64, lr= 0.0002, b1= 0.5, 
+                b2= 0.999, img_size= 28, latent_dim= 100, channels= 1, 
+                sample_interval= 400):
+        self.n_epochs = n_epochs
+        self.batch_size = batch_size
+        self.lr = lr
+        self.b1 = b1
+        self.b2 = b2
+        self.img_size = img_size
+        self.latent_dim = latent_dim
+        self.sample_interval = sample_interval
+        self.channels = channels
+        # Loss function
+        self.adversarial_loss = torch.nn.BCELoss()
+        # Initialize generator and discriminator
+        self.generator = Generator()
+        self.discriminator = Discriminator()
+
+        if cuda:
+            self.generator.cuda()
+            self.discriminator.cuda()
+            self.adversarial_loss.cuda()
+
+        # Optimizers
+        self.optimizer_G = torch.optim.Adam(generator.parameters(), lr=self.lr, betas=(self.b1, self.b2))
+        self.optimizer_D = torch.optim.Adam(discriminator.parameters(), lr=self.lr, betas=(self.b1, self.b2))
+
+
+    def train
 
 # Configure data loader
 os.makedirs("../../data/mnist", exist_ok=True)
@@ -111,9 +143,8 @@ dataloader = torch.utils.data.DataLoader(
     shuffle=True,
 )
 
-# Optimizers
-optimizer_G = torch.optim.Adam(generator.parameters(), lr=opt.lr, betas=(opt.b1, opt.b2))
-optimizer_D = torch.optim.Adam(discriminator.parameters(), lr=opt.lr, betas=(opt.b1, opt.b2))
+
+
 
 Tensor = torch.cuda.FloatTensor if cuda else torch.FloatTensor
 
