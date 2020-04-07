@@ -74,7 +74,7 @@ class Discriminator(nn.Module):
 
 
 class GAN():
-    def __init__(self, input_data, n_epochs = 200, batch_size= 64, lr= 0.0002, b1= 0.5, 
+    def __init__(self, n_epochs = 200, batch_size= 64, lr= 0.0002, b1= 0.5, 
                 b2= 0.999, img_size= 28, latent_dim= 100, channels= 1, 
                 sample_interval= 400):
         self.n_epochs = n_epochs
@@ -107,12 +107,12 @@ class GAN():
 
 # Configure data loader
 # os.makedirs("../../data/mnist", exist_ok=True)
-
-    dataloader = torch.utils.data.DataLoader(
-        input_data,
-        batch_size=self.batch_size,
-        shuffle=True,
-    )
+    def train(input_data):
+        dataloader = torch.utils.data.DataLoader(
+            input_data,
+            batch_size=self.batch_size,
+            shuffle=True,
+        )
 
 
 
