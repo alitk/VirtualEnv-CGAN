@@ -73,7 +73,7 @@ class Discriminator(nn.Module):
 
 
 
-class GAN():
+class GAN:
     def __init__(self, n_epochs = 200, batch_size= 64, lr= 0.0002, b1= 0.5, 
                 b2= 0.999, img_size= 28, latent_dim= 100, channels= 1, 
                 sample_interval= 400):
