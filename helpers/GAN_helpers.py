@@ -89,7 +89,7 @@ class GAN:
         # Loss function
         self.adversarial_loss = torch.nn.BCELoss()
         # Initialize generator and discriminator
-        self.generator = Generator()
+        self.generator = Generator(latent_dim)
         self.discriminator = Discriminator()
         self.img_shape = (self.channels, self.img_size, self.img_size)
 
