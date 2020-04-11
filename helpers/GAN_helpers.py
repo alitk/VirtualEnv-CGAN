@@ -114,6 +114,9 @@ class GAN():
             shuffle=True,
         )
 
+        for i, b in enumerate(dataloader):
+            print(i,b)
+
 
 
 '''
