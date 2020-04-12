@@ -134,14 +134,14 @@ class GAN:
                 self.optimizer_G.zero_grad()
 
                 # Sample noise as generator input
-                #z = Variable(Tensor(np.random.normal(0, 1, (self.latent_dim))))
+                # z = Variable(Tensor(np.random.normal(0, 1, (self.latent_dim))))
                 z = torch.randn(self.latent_dim)
 
                 # Generate a batch of images
-                gen_output = generator(z)
+                gen_output = self.generator(z)
 
                 # Loss measures generator's ability to fool the discriminator
-                g_loss = adversarial_loss(discriminator(gen_output), valid)
+                g_loss = adversarial_loss(self.discriminator(gen_output), valid)
 
                 g_loss.backward()
                 self.optimizer_G.step()
@@ -153,8 +153,8 @@ class GAN:
                 self.optimizer_D.zero_grad()
 
                 # Measure discriminator's ability to classify real from generated samples
-                real_loss = adversarial_loss(discriminator(real_output), valid)
-                fake_loss = adversarial_loss(discriminator(gen_output.detach()), fake)
+                real_loss = adversarial_loss(self.discriminator(real_output), valid)
+                fake_loss = adversarial_loss(self.discriminator(gen_output.detach()), fake)
                 d_loss = (real_loss + fake_loss) / 2
 
                 d_loss.backward()
