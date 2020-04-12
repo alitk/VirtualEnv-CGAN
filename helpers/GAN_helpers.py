@@ -51,7 +51,7 @@ class Generator(nn.Module):
 
 
 class Discriminator(nn.Module):
-    def __init__(self):
+    def __init__(self, img_shape):
         super(Discriminator, self).__init__()
 
         self.model = nn.Sequential(
@@ -91,7 +91,7 @@ class GAN:
         # Initialize generator and discriminator
         self.img_shape = (self.channels, self.img_size, self.img_size)
         self.generator = Generator(latent_dim, self.img_shape)
-        self.discriminator = Discriminator()
+        self.discriminator = Discriminator(self.img_shape)
         
 
         if cuda:
