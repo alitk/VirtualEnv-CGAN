@@ -117,6 +117,7 @@ class GAN:
 
         for i, b in enumerate(dataloader):
             print(i,b)
+            print('it worked')
 
 
 
