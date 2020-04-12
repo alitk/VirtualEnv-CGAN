@@ -134,7 +134,8 @@ class GAN:
                 self.optimizer_G.zero_grad()
 
                 # Sample noise as generator input
-                z = Variable(Tensor(np.random.normal(0, 1, (self.latent_dim))))
+                #z = Variable(Tensor(np.random.normal(0, 1, (self.latent_dim))))
+                z = torch.randn(self.latent_dim)
 
                 # Generate a batch of images
                 gen_output = generator(z)
