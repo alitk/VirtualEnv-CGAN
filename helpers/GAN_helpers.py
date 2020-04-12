@@ -108,7 +108,7 @@ class GAN:
 
 # Configure data loader
 # os.makedirs("../../data/mnist", exist_ok=True)
-    def train(input_data):
+    def train(self,input_data):
         dataloader = torch.utils.data.DataLoader(
             input_data,
             batch_size=self.batch_size,
