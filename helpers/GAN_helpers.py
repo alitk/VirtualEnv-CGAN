@@ -131,7 +131,7 @@ class GAN:
                 #  Train Generator
                 # -----------------
 
-                optimizer_G.zero_grad()
+                self.optimizer_G.zero_grad()
 
                 # Sample noise as generator input
                 z = Variable(Tensor(np.random.normal(0, 1, (self.latent_dim))))
@@ -143,13 +143,13 @@ class GAN:
                 g_loss = adversarial_loss(discriminator(gen_output), valid)
 
                 g_loss.backward()
-                optimizer_G.step()
+                self.optimizer_G.step()
 
                 # ---------------------
                 #  Train Discriminator
                 # ---------------------
 
-                optimizer_D.zero_grad()
+                self.optimizer_D.zero_grad()
 
                 # Measure discriminator's ability to classify real from generated samples
                 real_loss = adversarial_loss(discriminator(real_output), valid)
@@ -157,7 +157,7 @@ class GAN:
                 d_loss = (real_loss + fake_loss) / 2
 
                 d_loss.backward()
-                optimizer_D.step()
+                self.optimizer_D.step()
 
                 print(
                     "[Epoch %d/%d] [Batch %d/%d] [D loss: %f] [G loss: %f]"
