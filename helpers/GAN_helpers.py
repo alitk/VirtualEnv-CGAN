@@ -119,8 +119,8 @@ class GAN:
             for i, batch_data in enumerate(dataloader):
 
                 # Adversarial ground truths
-                valid = torch.ones([batch_data.size(0),1], dtype=float64, requires_grad=False)
-                fake = torch.zeros([batch_data.size(0),1], dtype=float64, requires_grad=False)
+                valid = torch.ones([batch_data.size(0),1], dtype=torch.float64, requires_grad=False)
+                fake = torch.zeros([batch_data.size(0),1], dtype=torch.float64, requires_grad=False)
                 #valid = Variable(Tensor(imgs.size(0), 1).fill_(1.0), requires_grad=False)
                 #fake = Variable(Tensor(imgs.size(0), 1).fill_(0.0), requires_grad=False)
 
