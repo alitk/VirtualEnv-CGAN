@@ -25,7 +25,7 @@ os.makedirs("images", exist_ok=True)
 cuda = True if torch.cuda.is_available() else False
 
 class Generator(nn.Module):
-    def __init__(self,latent_dim):
+    def __init__(self,latent_dim, img_shape):
         super(Generator, self).__init__()
 
         def block(in_feat, out_feat, normalize=True):
@@ -89,9 +89,10 @@ class GAN:
         # Loss function
         self.adversarial_loss = torch.nn.BCELoss()
         # Initialize generator and discriminator
-        self.generator = Generator(latent_dim)
-        self.discriminator = Discriminator()
         self.img_shape = (self.channels, self.img_size, self.img_size)
+        self.generator = Generator(latent_dim, self.img_shape)
+        self.discriminator = Discriminator()
+        
 
         if cuda:
             self.generator.cuda()
