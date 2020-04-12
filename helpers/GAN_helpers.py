@@ -90,9 +90,10 @@ class GAN:
         self.adversarial_loss = torch.nn.BCELoss()
         # Initialize generator and discriminator
         #self.img_shape = (self.channels, self.img_size, self.img_size)
-        self.generator = Generator(latent_dim, output_shape)
-        self.discriminator = Discriminator(output_shape)
-        
+        self.output_shape = output_shape  
+        self.generator = Generator(latent_dim, self.output_shape)
+        self.discriminator = Discriminator(self.output_shape)
+              
 
         if cuda:
             self.generator.cuda()
@@ -138,7 +139,7 @@ class GAN:
                 z = torch.randn(self.latent_dim)
 
                 # Generate a batch of images
-                gen_output = self.generator(z)
+                gen_output = self.generator(z, self.output_shape)
 
                 # Loss measures generator's ability to fool the discriminator
                 g_loss = adversarial_loss(self.discriminator(gen_output), valid)
