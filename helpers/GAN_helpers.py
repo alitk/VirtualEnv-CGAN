@@ -127,7 +127,7 @@ class GAN:
                 #fake = Variable(Tensor(imgs.size(0), 1).fill_(0.0), requires_grad=False)
 
                 # Configure input
-                real_outpt = torch.tensor(batch_data)
+                real_output = torch.tensor(batch_data)
 
                 # -----------------
                 #  Train Generator
