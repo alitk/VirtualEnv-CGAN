@@ -46,7 +46,7 @@ class Generator(nn.Module):
 
     def forward(self, z):
         img = self.model(z)
-        img = img.view(img.size(0), *img_shape)
+        img = img.view(img.size(0), *self.output_shape)
         return img
 
 
@@ -139,7 +139,7 @@ class GAN:
                 z = torch.randn(self.latent_dim)
 
                 # Generate a batch of images
-                gen_output = self.generator(z, self.output_shape)
+                gen_output = self.generator(z)
 
                 # Loss measures generator's ability to fool the discriminator
                 g_loss = adversarial_loss(self.discriminator(gen_output), valid)
