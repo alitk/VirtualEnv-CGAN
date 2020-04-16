@@ -92,8 +92,8 @@ class GAN:
         # Initialize generator and discriminator
         #self.img_shape = (self.channels, self.img_size, self.img_size)
         self.output_shape = output_shape  
-        self.generator = Generator(latent_dim, self.output_shape)
-        self.discriminator = Discriminator(self.output_shape)
+        self.generator = Generator((latent_dim), (self.output_shape))
+        self.discriminator = Discriminator((self.output_shape))
               
 
         if cuda:
