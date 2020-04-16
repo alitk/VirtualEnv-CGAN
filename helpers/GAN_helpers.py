@@ -92,8 +92,8 @@ class GAN:
         # Initialize generator and discriminator
         #self.img_shape = (self.channels, self.img_size, self.img_size)
         self.output_shape = output_shape  
-        self.generator = Generator((latent_dim), (self.output_shape))
-        self.discriminator = Discriminator((self.output_shape))
+        self.generator = Generator(latent_dim, self.output_shape)
+        self.discriminator = Discriminator(self.output_shape)
               
 
         if cuda:
@@ -121,8 +121,8 @@ class GAN:
             for i, batch_data in enumerate(dataloader):
 
                 # Adversarial ground truths
-                valid = torch.ones([batch_data.size(0),1], dtype=torch.float64, requires_grad=False)
-                fake = torch.zeros([batch_data.size(0),1], dtype=torch.float64, requires_grad=False)
+                valid = torch.ones([batch_data.size(0),1], dtype=torch.double, requires_grad=False)
+                fake = torch.zeros([batch_data.size(0),1], dtype=torch.double, requires_grad=False)
                 #valid = Variable(Tensor(imgs.size(0), 1).fill_(1.0), requires_grad=False)
                 #fake = Variable(Tensor(imgs.size(0), 1).fill_(0.0), requires_grad=False)
 
@@ -144,6 +144,8 @@ class GAN:
                 gen_output = self.generator(z)
 
                 # Loss measures generator's ability to fool the discriminator
+                print(valid.type())
+                print(self.discriminator(gen_output).type())
                 g_loss = self.adversarial_loss(self.discriminator(gen_output), valid)
 
                 g_loss.backward()
