@@ -27,6 +27,7 @@ cuda = True if torch.cuda.is_available() else False
 class Generator(nn.Module):
     def __init__(self,latent_dim, output_shape):
         super(Generator, self).__init__()
+        self.output_shape = output_shape
 
         def block(in_feat, out_feat, normalize=True):
             layers = [nn.Linear(in_feat, out_feat)]
@@ -46,7 +47,7 @@ class Generator(nn.Module):
 
     def forward(self, z):
         img = self.model(z)
-        img = img.view(img.size(0), *output_shape)
+        img = img.view(img.size(0), *self.output_shape)
         return img
 
 
