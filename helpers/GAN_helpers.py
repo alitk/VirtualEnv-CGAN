@@ -46,7 +46,7 @@ class Generator(nn.Module):
 
     def forward(self, z):
         img = self.model(z)
-        img = img.view(img.size(0), *self.output_shape)
+        img = img.view(img.size(0), *output_shape)
         return img
 
 
@@ -135,8 +135,9 @@ class GAN:
                 self.optimizer_G.zero_grad()
 
                 # Sample noise as generator input
-                # z = Variable(Tensor(np.random.normal(0, 1, (self.latent_dim))))
-                z = torch.randn((self.latent_dim,1)
+                #z = Variable(Tensor(np.random.normal(0, 1, (self.latent_dim))))
+                z = torch.randn((batch_data.size(0),self.latent_dim))
+                
 
                 # Generate a batch of images
                 gen_output = self.generator(z)
