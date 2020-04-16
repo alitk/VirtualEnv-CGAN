@@ -158,8 +158,8 @@ class GAN:
                 self.optimizer_D.zero_grad()
 
                 # Measure discriminator's ability to classify real from generated samples
-                real_loss = adversarial_loss(self.discriminator(real_output), valid)
-                fake_loss = adversarial_loss(self.discriminator(gen_output.detach()), fake)
+                real_loss = self.adversarial_loss(self.discriminator(real_output), valid)
+                fake_loss = self.adversarial_loss(self.discriminator(gen_output.detach()), fake)
                 d_loss = (real_loss + fake_loss) / 2
 
                 d_loss.backward()
