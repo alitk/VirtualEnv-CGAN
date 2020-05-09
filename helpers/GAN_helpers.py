@@ -170,6 +170,7 @@ class GAN:
                     % (epoch, self.n_epochs, i, len(dataloader), d_loss.item(), g_loss.item())
                 )
 
+
                 batches_done = epoch * len(dataloader) + i
                 if batches_done % self.sample_interval == 0:
                     save_image(gen_output.data[:25], "images/%d.png" % batches_done, nrow=5, normalize=True)
