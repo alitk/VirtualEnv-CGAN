@@ -167,7 +167,7 @@ class GAN:
 
                 print(
                     "[Epoch %d/%d] [Batch %d/%d] [D loss: %f] [G loss: %f]"
-                    % (epoch, opt.n_epochs, i, len(dataloader), d_loss.item(), g_loss.item())
+                    % (epoch, self.n_epochs, i, len(dataloader), d_loss.item(), g_loss.item())
                 )
 
                 batches_done = epoch * len(dataloader) + i
