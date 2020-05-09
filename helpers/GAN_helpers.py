@@ -144,8 +144,8 @@ class GAN:
                 gen_output = self.generator(z)
 
                 # Loss measures generator's ability to fool the discriminator
-                print(valid.type())
-                print(self.discriminator(gen_output).type())
+                #print(valid.type())
+                #print(self.discriminator(gen_output).type())
                 g_loss = self.adversarial_loss(self.discriminator(gen_output), valid)
 
                 g_loss.backward()
