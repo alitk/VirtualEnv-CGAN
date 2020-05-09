@@ -128,7 +128,7 @@ class GAN:
 
                 # Configure input
                 real_output = torch.tensor(batch_data)
-
+                print(real_output..type())
                 # -----------------
                 #  Train Generator
                 # -----------------
