@@ -1,0 +1,4 @@
+description=${1?Error: no name given}
+git add .
+git commit -m "$description"
+git push
