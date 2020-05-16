@@ -142,7 +142,7 @@ class GAN:
 
                 # Sample noise as generator input
                 #z = Variable(Tensor(np.random.normal(0, 1, (self.latent_dim))))
-                if cude:
+                if cuda:
                     z = torch.randn((batch_data.size(0),self.latent_dim)).cuda()
                 else:
                     z = torch.randn((batch_data.size(0),self.latent_dim))
