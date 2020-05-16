@@ -121,11 +121,18 @@ class GAN:
                 # Adversarial ground truths
                 valid = torch.ones([batch_data.size(0),1], dtype=torch.float, requires_grad=False)
                 fake = torch.zeros([batch_data.size(0),1], dtype=torch.float, requires_grad=False)
+                if cuda:
+                    valid = valid.cuda()
+                    fake = fake.cuda()
+
                 #valid = Variable(Tensor(imgs.size(0), 1).fill_(1.0), requires_grad=False)
                 #fake = Variable(Tensor(imgs.size(0), 1).fill_(0.0), requires_grad=False)
 
                 # Configure input
-                real_output = torch.tensor(batch_data)
+                if cuda:
+                    real_output = torch.tensor(batch_data).cuda()
+                else:
+                    real_output = torch.tensor(batch_data)
                 
                 # -----------------
                 #  Train Generator
@@ -135,8 +142,11 @@ class GAN:
 
                 # Sample noise as generator input
                 #z = Variable(Tensor(np.random.normal(0, 1, (self.latent_dim))))
-                z = torch.randn((batch_data.size(0),self.latent_dim)).cuda()
-                
+                if cude:
+                    z = torch.randn((batch_data.size(0),self.latent_dim)).cuda()
+                else:
+                    z = torch.randn((batch_data.size(0),self.latent_dim))
+
 
                 # Generate a batch of images
                 gen_output = self.generator(z)
