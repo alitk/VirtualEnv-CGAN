@@ -135,7 +135,7 @@ class GAN:
 
                 # Sample noise as generator input
                 #z = Variable(Tensor(np.random.normal(0, 1, (self.latent_dim))))
-                z = torch.randn((batch_data.size(0),self.latent_dim))
+                z = torch.randn((batch_data.size(0),self.latent_dim)).cuda()
                 
 
                 # Generate a batch of images
